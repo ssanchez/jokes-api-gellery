@@ -4,26 +4,38 @@ import PropTypes from "prop-types";
 class JokeFetcher extends Component {
   static propTypes = {
     api: PropTypes.string.isRequired,
-    jokeKey: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+    id: PropTypes.number.isRequired,
+    jokeKeys: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired,
+    remover: PropTypes.func.isRequired
   };
 
   // using a Set to prevent dupes
   state = {
+    currentJoke: "",
     jokes: new Set()
   };
 
-  handleClick = () => {
-    const { api, jokeKey } = this.props;
+  JokeFetcherStyle = {
+    backgroundColor: `hsl(${Math.random() * 360}, 100%, 75%)`
+  };
+
+  handleFetchClick = () => {
+    const { api, jokeKeys } = this.props;
     fetch(api, {
       headers: {
         Accept: "application/json"
       }
     })
       .then(response => response.json())
-      .then(({ [jokeKey]: joke }) => {
-        this.setState(prevState => ({
-          jokes: prevState.jokes.add(joke)
+      .then(jokeData => {
+        const joke = jokeKeys.reduce(
+          (acc, jokeKey) => `${acc} ${jokeData[jokeKey]}`,
+          ""
+        );
+        this.setState(({ jokes }) => ({
+          currentJoke: joke,
+          jokes: jokes.add(joke)
         }));
       })
       .catch(err => {
@@ -31,16 +43,29 @@ class JokeFetcher extends Component {
       });
   };
 
+  handleCloseClick = () => {
+    const { id, remover } = this.props;
+    remover(id);
+  };
+
   render() {
-    const { jokes } = this.state;
+    const { currentJoke, jokes } = this.state;
     const { name } = this.props;
     return (
-      <section>
-        <h3>{name}</h3>
-        <button type="button" onClick={this.handleClick}>
+      <section className="JokeFetcher" style={this.JokeFetcherStyle}>
+        <h3 className="JokeFetcher-name">{name}</h3>
+        <button
+          type="button"
+          onClick={this.handleFetchClick}
+          className="JokeFetcher-button"
+        >
           get a joke
         </button>
+        <p>{currentJoke}</p>
         {jokes.size}
+        <span className="JokeFetcher-closer" onClick={this.handleCloseClick}>
+          &times;
+        </span>
       </section>
     );
   }

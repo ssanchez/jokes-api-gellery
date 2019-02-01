@@ -1,0 +1,28 @@
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* align-items: stretch; */
+  /* height: 100vh;
+  min-height: 100vh; */
+}
+
+.JokeFetcher {
+  align-items: center;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  position: relative;
+  width: 400px;
+}
+
+.JokeFetcher-closer {
+  cursor: pointer;
+  font-size: 2rem;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
