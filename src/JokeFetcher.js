@@ -16,6 +16,7 @@ class JokeFetcher extends Component {
     jokes: new Set()
   };
 
+  // give the fetcher a random, light background color
   JokeFetcherStyle = {
     backgroundColor: `hsl(${Math.random() * 360}, 100%, 75%)`
   };
@@ -53,7 +54,7 @@ class JokeFetcher extends Component {
     const { name } = this.props;
     return (
       <section className="JokeFetcher" style={this.JokeFetcherStyle}>
-        <h3 className="JokeFetcher-name">{name}</h3>
+        <h1 className="JokeFetcher-name">{name}</h1>
         <button
           type="button"
           onClick={this.handleFetchClick}

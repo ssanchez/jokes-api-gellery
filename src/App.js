@@ -42,11 +42,13 @@ class App extends Component {
             <JokeFetcher id={id} key={id} remover={this.removeApi} {...rest} />
           );
         })}
-        <div className="JokeFetcher">
-          <button type="button" onClick={this.addApi}>
-            Add API
-          </button>
-        </div>
+        {apis.length < apiData.length && (
+          <div className="JokeFetcher JokeFetcher--control">
+            <button type="button" onClick={this.addApi}>
+              Add API
+            </button>
+          </div>
+        )}
       </div>
     );
   }
