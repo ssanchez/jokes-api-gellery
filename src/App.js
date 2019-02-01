@@ -1,29 +1,22 @@
 import React, { Component } from "react";
+import JokeFetcher from "./JokeFetcher";
 import "./App.css";
 
 class App extends Component {
-  handleClick = () => {
-    fetch("https://icanhazdadjoke.com/", {
-      headers: {
-        Accept: "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(({ joke }) => {
-        console.log(joke);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  };
-
   render() {
     return (
-      <article>
-        <button type="button" onClick={this.handleClick}>
-          get a joke
-        </button>
-      </article>
+      <div>
+        <JokeFetcher
+          api="https://icanhazdadjoke.com/"
+          jokeKey="joke"
+          name="icanhazdadjoke"
+        />
+        <JokeFetcher
+          api="https://api.chucknorris.io/jokes/random"
+          jokeKey="value"
+          name="Chuck Norris API"
+        />
+      </div>
     );
   }
 }
