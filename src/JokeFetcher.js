@@ -48,6 +48,10 @@ class JokeFetcher extends Component {
     remover(id);
   };
 
+  handleTickClick = joke => {
+    this.setState({ currentJoke: joke });
+  };
+
   render() {
     const { currentJoke, jokes } = this.state;
     const { name } = this.props;
@@ -69,7 +73,15 @@ class JokeFetcher extends Component {
           get a joke
         </button>
         <p>{currentJoke}</p>
-        {jokes.size}
+        <div className="JokeFetcher-ticks">
+          {[...jokes].map((joke, i) => (
+            <div
+              className="JokeFetcher-tick"
+              onClick={() => this.handleTickClick(joke)}
+              key={i}
+            />
+          ))}
+        </div>
         <span className="JokeFetcher-closer" onClick={this.handleCloseClick}>
           &times;
         </span>

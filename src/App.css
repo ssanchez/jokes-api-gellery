@@ -63,3 +63,17 @@ button:hover {
   right: 20px;
   top: 10px;
 }
+
+.JokeFetcher-ticks {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.JokeFetcher-tick {
+  height: 25px;
+  width: 25px;
+  margin: 5px;
+  background-color: darkred;
+  border-radius: 50%;
+}
