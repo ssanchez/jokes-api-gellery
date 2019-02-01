@@ -16,11 +16,11 @@ export default [
     jokeKeys: ["setup", "punchline"],
     name: "Official Joke API",
     id: 3
-    // },
-    // {
-    //   api: "https://getpuns.herokuapp.com/api/random",
-    //   jokeKeys: ["pun"],
-    //   name: "Puns API",
-    //   id: 4
+  },
+  {
+    api: "https://getpuns.herokuapp.com/api/random",
+    jokeKeys: ["pun"],
+    name: "Puns API",
+    id: 4
   }
 ];

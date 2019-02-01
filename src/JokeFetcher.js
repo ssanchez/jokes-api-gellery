@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import dadJokeDog from "./dadjokedog.png";
 
 class JokeFetcher extends Component {
   static propTypes = {
@@ -17,9 +18,7 @@ class JokeFetcher extends Component {
   };
 
   // give the fetcher a random, light background color
-  JokeFetcherStyle = {
-    backgroundColor: `hsl(${Math.random() * 360}, 100%, 75%)`
-  };
+  randomLightColor = `hsla(${Math.random() * 360}, 100%, 75%, 0.75)`;
 
   handleFetchClick = () => {
     const { api, jokeKeys } = this.props;
@@ -53,7 +52,14 @@ class JokeFetcher extends Component {
     const { currentJoke, jokes } = this.state;
     const { name } = this.props;
     return (
-      <section className="JokeFetcher" style={this.JokeFetcherStyle}>
+      <section
+        className="JokeFetcher"
+        style={{
+          backgroundImage: `linear-gradient(${this.randomLightColor},${
+            this.randomLightColor
+          }), url(${dadJokeDog})`
+        }}
+      >
         <h1 className="JokeFetcher-name">{name}</h1>
         <button
           type="button"
